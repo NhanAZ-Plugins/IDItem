@@ -1,27 +1,25 @@
 <?php
 namespace GN\IDItem;
 
-use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerItemHeldEvent;
+use pocketmine\plugin\PluginBase;
 
-class IDItem extends PluginBase implements Listener {
+final class IDItem extends PluginBase implements Listener{
+	private const SLOGAN = "§e༄༂§aID Item§e༂࿐§b";
 
-        public $slogan = "§e༄༂§aID Item§e༂࿐§b";
-        
-	public function onEnable()
-	{
-		  $this->getLogger()->info("ID Item By Ghast Noob");
-                  $this->getServer()->getPluginManager()->registerEvents($this ,$this);
-        }
-        
-        public function ItemHeld(PlayerItemHeldEvent $event)
-        {
-            $pl = $event->getPlayer();
-            if($pl->isOp())
-            {
-            $pl->sendTip($this->slogan . " " . $event->getItem()->getId() . "§f:§b" . $event->getItem()->getDamage());
-            }
-        }
+	protected function onEnable() : void{
+		$this->getLogger()->info("ID Item by Ghast Noob");
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+	}
 
+	public function onItemHeld(PlayerItemHeldEvent $event) : void{
+		$player = $event->getPlayer();
+		if(!$player->isOp()){
+			return;
+		}
+
+		$item = $event->getItem();
+		$player->sendTip(ItemIdMessageFormatter::format($item->getTypeId(), $item->getVanillaName()));
+	}
 }

@@ -1,9 +1,7 @@
 # IDItem
 
-IDItem is a legacy PocketMine-MP plugin snapshot that shows the held item's numeric ID and damage value in a tip for operators. The manifest calls the plugin `ID_Item`, declares API versions 1.0.0, 1.1.0 and 2.0.0, and credits Ghast Noob.
+IDItem shows an operator the held item's numeric type ID and vanilla name when the selected hotbar item changes. It is ported to Axolotl-PM API 5.0.0. API 5 no longer exposes the legacy item damage value used by the original plugin, so the message now reports the API 5 item type ID and name instead.
 
-The source listens for `PlayerItemHeldEvent` and calls `getId()` and `getDamage()` on the selected item. Its numeric item model and plugin API declarations have not been verified on Axolotl-PM 5.x. This repository does not provide a current Axolotl-PM 5 build, runtime test or stable release.
+The plugin retains the original Ghast Noob author credit. This repository has no license file; no stable release or separately distributed plugin artifact is provided. The repository is archived after the API 5 source port and CI checks.
 
-The repository has no LICENSE file or documented grant to redistribute a modified build. The original source and author credit remain unchanged. A modern port or release needs verified rights and a fresh compatibility review.
-
-See [plugin.yml](plugin.yml) and [the historical source](src/GN/IDItem/IDItem.php) for the exact implementation.
+CI runs PHPStan at maximum level and builds and inspects the plugin PHAR against pinned Axolotl-PM 5.0.0 and 5.49.1 source revisions. It also starts the API 5.49.1 server with the built plugin. These checks establish compatibility at those tested points, not every Axolotl-PM 5.x release. A connected-player tip display was not tested.
