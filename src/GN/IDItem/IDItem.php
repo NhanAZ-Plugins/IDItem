@@ -6,8 +6,6 @@ use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\plugin\PluginBase;
 
 final class IDItem extends PluginBase implements Listener{
-	private const SLOGAN = "§e༄༂§aID Item§e༂࿐§b";
-
 	protected function onEnable() : void{
 		$this->getLogger()->info("ID Item by Ghast Noob");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -15,7 +13,7 @@ final class IDItem extends PluginBase implements Listener{
 
 	public function onItemHeld(PlayerItemHeldEvent $event) : void{
 		$player = $event->getPlayer();
-		if(!$player->isOp()){
+		if(!$this->getServer()->isOp($player->getName())){
 			return;
 		}
 
