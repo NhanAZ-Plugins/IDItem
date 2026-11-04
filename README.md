@@ -8,3 +8,8 @@ Numeric item type identifier lookup for Axolotl-PM API 5.
 
 
 Numeric item type identifier lookup for Axolotl-PM API 5.
+
+
+## Credits
+
+Authors: NhanAZ.
